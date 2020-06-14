@@ -21,7 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('', accounts.views.index, name='index'),
-    path('oauth/', accounts.views.oauth, name='oauth'),
-    path('test/', accounts.views.test, name='test'),
-    path('kakaologin/', accounts.views.kakaologin, name='kakaologin')
+    path('callback/', accounts.views.callback_control, name='callback'),
+
+    # path('test/', accounts.views.test, name='test'),
+
+    # path('oauth/', accounts.views.oauth, name='oauth'),
+    # path('kakaologin/', accounts.views.kakaologin, name='kakaologin')
 ]

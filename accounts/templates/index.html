@@ -10,19 +10,36 @@
     </head>
 
     <body>
-        <a href="{% url 'kakaologin' %}"><button>로그인 후 내 프로필 데이터 받아오기</button></a>
-        <script type='text/javascript'>
+    <button id="demo">자바스크립트: 카카오톡 친구에게 선물하기</button>
+    <button id="but">callback 데이터 알람창으로 확인하</button>
+
+    <script type='text/javascript'>기
             Kakao.init('61b6098ac2bea13454d2fa44d235b788');  // sdk initialization, javascript key
             console.log("INITIALIZED", Kakao.isInitialized()); // check if its been initialized
-<!--            Kakao.API.request({-->
-<!--              url: '/v1/api/talk/friends',-->
-<!--              success: function(response) {-->
-<!--                console.log(response);-->
-<!--              },-->
-<!--              fail: function(error) {-->
-<!--                console.log('FAILED',error);-->
-<!--              }-->
-<!--            });-->
+
+
+            document.getElementById("demo").onclick = function() {myFunction()};
+
+            function myFunction() {
+              Kakao.Link.sendDefault({
+                  objectType: 'text',
+                  text: '간단한 JavaScript SDK 샘플과 함께 카카오 플랫폼 서비스 개발을 시작해 보세요.',
+                  link: {
+                    mobileWebUrl: 'https://developers.kakao.com',
+                    webUrl: 'https://developers.kakao.com'
+                  },
+                  serverCallbackArgs: '{"key1":"value1"}' // 콜백 파라미터 설정
+                });
+            };
+
+
+            document.getElementById("but").onclick = function() {
+                let url = new URL('http://7e08e571b1f3.ngrok.io/callback');
+                let searchParams = new URLSearchParams(url.search);
+                console.log(searchParams.get('key1'));
+                alert(searchParams.get('key1'));
+            };
         </script>
+
     </body>
 </html>
