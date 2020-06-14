@@ -40,8 +40,11 @@
                         },
                     },
                 serverCallbackArgs: '{"myKey":"myValue"}',
+
                 success: function(response) {
+                    console.log('success');
                     console.log('success',response);
+                    document.getElementById("res").innerHTML = response;
                   },
                   fail: function(error) {
                     console.log('fail',error);
@@ -51,10 +54,12 @@
             };
 
             document.getElementById("but").onclick = function() {
-                let url = new URL('https://3e15ed8d2ccd.ngrok.io/callback/');
+                let url = new URL("https://3e15ed8d2ccd.ngrok.io/callback?'k'='v'");
                 let searchParams = new URLSearchParams(url.search);
-                console.log(searchParams.get('key1'));
-                alert(searchParams.get('key1'));
+                console.log(searchParams);
+                alert(searchParams);
+                console.log(searchParams.get('k'));
+                alert(searchParams.get('k'));
             };
         </script>
 

@@ -3,6 +3,8 @@ import requests
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 from django.urls import reverse
+from django.http import JsonResponse
+import json
 
 def index(request):
     return render(request, 'index.html', {})
@@ -15,14 +17,20 @@ def callback_control(request):
         callback_CHAT_TYPE = request.GET.get('CHAT_TYPE', None)
         callback_myKey = request.GET.get('myKey', None)
         print("callback_data: ", callback_CHAT_TYPE, callback_myKey)
-        return render(request, 'callback.html',
-                      {'callback_CHAT_TYPE': callback_CHAT_TYPE, 'callback_myKey': callback_myKey})
+        context = {'callback_CHAT_TYPE': callback_CHAT_TYPE, 'callback_myKey': callback_myKey}
+        # return render(request, 'callback.html',
+        #               {'callback_CHAT_TYPE': callback_CHAT_TYPE, 'callback_myKey': callback_myKey})
+        return JsonResponse(context)
 
     if request.method == 'POST':
-        request_body = request.body
-        print('Raw Data: ', request.body)
-        return render(request, 'callback.html',
-                  {'request_body': request_body})
+        context = json.loads(request.body)
+        print('Context: ', context)
+
+        # return render(request, 'callback.html',
+        #           {'request_body': request_body})
+
+        return JsonResponse(context)
+
 
     # return redirect(reverse('callback', kwargs={'callback_data0': callback_data0, 'callback_data1': callback_data1,
     #                                             'callback_data2': callback_data2}))
