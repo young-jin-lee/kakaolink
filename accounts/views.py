@@ -10,11 +10,6 @@ def callback_control(request):
     print("A")
     callback_url = 'http://7e08e571b1f3.ngrok.io/callback'
     print("B")
-
-
-    # callback_data = requests.get(callback_url)
-    # print("C", callback_data)
-
     callback_data2 = request.GET.get('key1', None)
     print("D", callback_data2)
 

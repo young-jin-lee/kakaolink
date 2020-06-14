@@ -10,17 +10,19 @@
     </head>
 
     <body>
-    <button id="demo">자바스크립트: 카카오톡 친구에게 선물하기</button>
-    <button id="but">callback 데이터 알람창으로 확인하</button>
-
-    <script type='text/javascript'>기
-            Kakao.init('61b6098ac2bea13454d2fa44d235b788');  // sdk initialization, javascript key
-            console.log("INITIALIZED", Kakao.isInitialized()); // check if its been initialized
+<!--    <a id="kakao-link-btn" href="javascript:sendLink()"><button>자바스크립트: 카카오톡 친구에게 선물하기</button></a>-->
+    <a id="demo"><button>자바스크립트: 카카오톡 친구에게 선물하기</button></a>
+    <button id="but">callback 데이터 알람창으로 확인하기</button>
 
 
+    <script type='text/javascript'>
             document.getElementById("demo").onclick = function() {myFunction()};
 
             function myFunction() {
+
+              Kakao.init('61b6098ac2bea13454d2fa44d235b788');  // sdk initialization, javascript key
+              console.log("INITIALIZED", Kakao.isInitialized()); // check if its been initialized
+
               Kakao.Link.sendDefault({
                   objectType: 'text',
                   text: '간단한 JavaScript SDK 샘플과 함께 카카오 플랫폼 서비스 개발을 시작해 보세요.',
@@ -28,7 +30,7 @@
                     mobileWebUrl: 'https://developers.kakao.com',
                     webUrl: 'https://developers.kakao.com'
                   },
-                  serverCallbackArgs: '{"key1":"value1"}' // 콜백 파라미터 설정
+                  serverCallbackArgs: '{"myKey":"myValue"}' // 콜백 파라미터 설정
                 });
             };
 

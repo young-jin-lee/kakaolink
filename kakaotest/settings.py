@@ -127,3 +127,8 @@ STATIC_ROOT = '/static/'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+
+
+# Whether to append trailing slashes to URLs.
+APPEND_SLASH = True
