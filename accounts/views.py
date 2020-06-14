@@ -5,6 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 from django.http import JsonResponse
 import json
+from .models import PresentKey
+
 
 def index(request):
     return render(request, 'index.html', {})
@@ -25,9 +27,10 @@ def callback_control(request):
     if request.method == 'POST':
         context = json.loads(request.body)
         print('Context: ', context)
+        key_val = PresentKey(key="key_idx", value=context['myKey'])
+        key_val.save()
 
-        # return render(request, 'callback.html',
-        #           {'request_body': request_body})
+        # return render(request, 'callback.html', context)
 
         return JsonResponse(context)
 

@@ -39,10 +39,11 @@
                           androidExecParams: 'test',
                         },
                     },
-                serverCallbackArgs: '{"myKey":"myValue"}',
+                    // 카카오톡 서버에서 다시 mykey return 해줌. 보냈던 메시지를 식별해준다.
+                serverCallbackArgs: '{"myKey":"myValue"}', 
 
                 success: function(response) {
-                    console.log('success');
+                    console.log('success'); // 이 로그가 어디에 찍히려나..
                     console.log('success',response);
                     document.getElementById("res").innerHTML = response;
                   },
