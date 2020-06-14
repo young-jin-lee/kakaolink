@@ -6,7 +6,16 @@
 </head>
 <body>
     <h1>CALLBACK RESULTS</h1>
-    <h4>{{ callback_data }}</h4>
+    <h4>{{ callback_myKey }}</h4>
+    <h4>{{ request_body }}</h4>
+
+    <script>
+        console.log(window)
+        const params = new URLSearchParams(window.location.search)
+        for (const param of params) {
+          console.log(param)
+        }
+    </script>
 
 </body>
 </html>

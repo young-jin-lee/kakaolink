@@ -1,19 +1,34 @@
 from django.shortcuts import render, redirect
 import requests
-
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+from django.urls import reverse
 
 def index(request):
     return render(request, 'index.html', {})
 
-def callback_control(request):
-    print("A")
-    callback_url = 'http://7e08e571b1f3.ngrok.io/callback'
-    print("B")
-    callback_data2 = request.GET.get('key1', None)
-    print("D", callback_data2)
 
-    return render(request, 'callback.html', {'callback_data': callback_data2})
+@csrf_exempt
+def callback_control(request):
+
+    if request.method == "GET":
+        callback_CHAT_TYPE = request.GET.get('CHAT_TYPE', None)
+        callback_myKey = request.GET.get('myKey', None)
+        print("callback_data: ", callback_CHAT_TYPE, callback_myKey)
+        return render(request, 'callback.html',
+                      {'callback_CHAT_TYPE': callback_CHAT_TYPE, 'callback_myKey': callback_myKey})
+
+    if request.method == 'POST':
+        request_body = request.body
+        print('Raw Data: ', request.body)
+        return render(request, 'callback.html',
+                  {'request_body': request_body})
+
+    # return redirect(reverse('callback', kwargs={'callback_data0': callback_data0, 'callback_data1': callback_data1,
+    #                                             'callback_data2': callback_data2}))
+
+
+
 
 
 # def test(request):

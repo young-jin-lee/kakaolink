@@ -19,24 +19,39 @@
             document.getElementById("demo").onclick = function() {myFunction()};
 
             function myFunction() {
+              console.log("CHECK INIT", Kakao.isInitialized()); // check if its been initialized
 
-              Kakao.init('61b6098ac2bea13454d2fa44d235b788');  // sdk initialization, javascript key
-              console.log("INITIALIZED", Kakao.isInitialized()); // check if its been initialized
+              if (Kakao.isInitialized()) {
+                  console.log("INITIALIZED", Kakao.isInitialized()); // check if its been initialized
 
+              }else{
+                Kakao.init('61b6098ac2bea13454d2fa44d235b788');  // sdk initialization, javascript key
+                  console.log("INITIALIZING", Kakao.isInitialized()); // check if its been initialized
+                };
               Kakao.Link.sendDefault({
-                  objectType: 'text',
-                  text: '간단한 JavaScript SDK 샘플과 함께 카카오 플랫폼 서비스 개발을 시작해 보세요.',
-                  link: {
-                    mobileWebUrl: 'https://developers.kakao.com',
-                    webUrl: 'https://developers.kakao.com'
+                objectType: 'feed',
+                content: {
+                    title: '디저트 사진',
+                    description: '아메리카노, 빵, 케익',
+                    imageUrl: 'http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+                        link: {
+                          mobileWebUrl: 'https://google.com',
+                          androidExecParams: 'test',
+                        },
+                    },
+                serverCallbackArgs: '{"myKey":"myValue"}',
+                success: function(response) {
+                    console.log('success',response);
                   },
-                  serverCallbackArgs: '{"myKey":"myValue"}' // 콜백 파라미터 설정
-                });
+                  fail: function(error) {
+                    console.log('fail',error);
+                  }
+              });
+
             };
 
-
             document.getElementById("but").onclick = function() {
-                let url = new URL('http://7e08e571b1f3.ngrok.io/callback');
+                let url = new URL('https://3e15ed8d2ccd.ngrok.io/callback/');
                 let searchParams = new URLSearchParams(url.search);
                 console.log(searchParams.get('key1'));
                 alert(searchParams.get('key1'));
