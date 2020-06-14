@@ -32,11 +32,6 @@ def callback_control(request):
         return JsonResponse(context)
 
 
-    # return redirect(reverse('callback', kwargs={'callback_data0': callback_data0, 'callback_data1': callback_data1,
-    #                                             'callback_data2': callback_data2}))
-
-
-
 
 
 # def test(request):
