@@ -23,8 +23,6 @@ urlpatterns = [
     path('', accounts.views.index, name='index'),
     path('callback/', accounts.views.callback_control, name='callback'),
 
-    # path('test/', accounts.views.test, name='test'),
-
     # path('oauth/', accounts.views.oauth, name='oauth'),
     # path('kakaologin/', accounts.views.kakaologin, name='kakaologin')
 ]

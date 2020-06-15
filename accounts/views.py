@@ -20,9 +20,8 @@ def callback_control(request):
         callback_myKey = request.GET.get('myKey', None)
         print("callback_data: ", callback_CHAT_TYPE, callback_myKey)
         context = {'callback_CHAT_TYPE': callback_CHAT_TYPE, 'callback_myKey': callback_myKey}
-        # return render(request, 'callback.html',
-        #               {'callback_CHAT_TYPE': callback_CHAT_TYPE, 'callback_myKey': callback_myKey})
-        return JsonResponse(context)
+
+        return JsonResponse({})
 
     if request.method == 'POST':
         context = json.loads(request.body)
@@ -30,15 +29,10 @@ def callback_control(request):
         key_val = PresentKey(key="key_idx", value=context['myKey'])
         key_val.save()
 
-        # return render(request, 'callback.html', context)
-
-        return JsonResponse(context)
+        return JsonResponse({})
 
 
 
-
-# def test(request):
-#     return render(request, 'test.html', {})
 
 # REST API 사용 로그인
 

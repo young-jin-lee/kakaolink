@@ -10,10 +10,7 @@
     </head>
 
     <body>
-<!--    <a id="kakao-link-btn" href="javascript:sendLink()"><button>자바스크립트: 카카오톡 친구에게 선물하기</button></a>-->
-    <a id="demo"><button>자바스크립트: 카카오톡 친구에게 선물하기</button></a>
-    <button id="but">callback 데이터 알람창으로 확인하기</button>
-
+    <a id="demo"><button>자바스크립트sdk: 카카오톡 친구에게 카톡보내기</button></a>
 
     <script type='text/javascript'>
             document.getElementById("demo").onclick = function() {myFunction()};
@@ -35,32 +32,13 @@
                     description: '아메리카노, 빵, 케익',
                     imageUrl: 'http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
                         link: {
-                          mobileWebUrl: 'https://google.com',
+                          mobileWebUrl: 'https://www.google.com/search?sxsrf=ALeKk0379z4-a5XZi4F8oZNUknA9N2rlmw%3A1592181900503&source=hp&ei=jMTmXquxHJX4hwOmmrmICw&q=%EC%9D%B4%EC%98%81%EC%A7%84&oq=%EC%9D%B4%EC%98%81%EC%A7%84&gs_lcp=CgZwc3ktYWIQAzIFCAAQgwEyBQgAEIMBMgUIABCxAzIFCAAQsQMyBQgAELEDMgUIABCxAzICCAAyAggAMgUIABCDATIFCAAQsQM6BAgjECc6BAgAEAo6BwgjEOoCECdQqwJYkSNg8yNoAnAAeAGAAa0BiAGcCJIBAzAuOJgBAKABAaoBB2d3cy13aXqwAQo&sclient=psy-ab&ved=0ahUKEwirp-Hky4LqAhUV_GEKHSZNDrEQ4dUDCAc&uact=5',
                           androidExecParams: 'test',
                         },
                     },
                     // 카카오톡 서버에서 다시 mykey return 해줌. 보냈던 메시지를 식별해준다.
-                serverCallbackArgs: '{"myKey":"myValue"}', 
-
-                success: function(response) {
-                    console.log('success'); // 이 로그가 어디에 찍히려나..
-                    console.log('success',response);
-                    document.getElementById("res").innerHTML = response;
-                  },
-                  fail: function(error) {
-                    console.log('fail',error);
-                  }
+                serverCallbackArgs: '{"myKey":"myValue"}',
               });
-
-            };
-
-            document.getElementById("but").onclick = function() {
-                let url = new URL("https://3e15ed8d2ccd.ngrok.io/callback?'k'='v'");
-                let searchParams = new URLSearchParams(url.search);
-                console.log(searchParams);
-                alert(searchParams);
-                console.log(searchParams.get('k'));
-                alert(searchParams.get('k'));
             };
         </script>
 
